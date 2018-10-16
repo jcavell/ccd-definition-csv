@@ -13,8 +13,6 @@ class CSVToExcel : CliktCommand() {
     private val env by argument()
     private val version by argument()
 
-    // val env: String by option(help="The environment").prompt("Environment")
-
     override fun run() {
         convert(sourcedir, destdir, workbookName, keyValueFile, env, version)
     }

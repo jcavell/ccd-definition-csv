@@ -45,5 +45,4 @@ class CSVToTab(val env: String, val version: String, val sourceDir: File, val wo
     fun createTabs(): List<Tab> {
         return extractTabNames().map { tn -> importTabCSV(tn) }
     }
-
 }

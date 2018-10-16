@@ -8,7 +8,6 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-
 class TabToExcel {
 
     val workbook = XSSFWorkbook()
@@ -19,8 +18,6 @@ class TabToExcel {
          val createHelper = workbook.creationHelper
          val dateCellStyle = workbook.createCellStyle()
          dateCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/mm/yyyy"));
-//         val dateFormat = createHelper.createDataFormat().getFormat("dd-MMM-yyyy")
-//         dateCellStyle.setDataFormat(dateFormat)
 
         // Description rows
         for ((rowIndex, rowValue) in tab.descriptionRows.withIndex()) {
@@ -62,7 +59,6 @@ class TabToExcel {
         }
     }
 
-
     fun convert(destDir: File, name: String, tabs: List<Tab>) {
 
         for (tab in tabs) sheet(tab)
@@ -95,7 +91,6 @@ class TabToExcel {
         }
     }
 
-
     val yyyyDate = ".*\\d{4}$".toRegex()
     fun matchesyyyy(dateString: String) : Boolean{
         return yyyyDate.matches(dateString)
@@ -113,5 +108,4 @@ class TabToExcel {
         }
         return Date.from(LocalDate.parse(dateString, formatter).atStartOfDay(ZoneId.systemDefault()).toInstant())
     }
-
 }
