@@ -1,0 +1,3 @@
+Env,Key,Value
+AAT,CaseType.PrintableDocumentsUrl,http://ccd-data-store-api-aat.service.core-compute-aat.internal/callback/jurisdictions/SSCS/case-types/Benefit/documents
+Prod,CaseType.PrintableDocumentsUrl,http://ccd-data-store-api-prod.service.core-compute-prod/callback/jurisdictions/SSCS/case-types/Benefit/documents

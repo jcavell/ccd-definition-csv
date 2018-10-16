@@ -1,0 +1,7 @@
+CaseType,PrimaryKeyInRed,PrimaryAndForeignKey Orange,ForeignKey Brown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,MaxLength:70,MaxLength: 200,MaxLength: 100,MaxLength:70,URL to call back to the service for uniqueness. Mx Length: 1000,"Comma separate timeout (each number is a retry , seconds e.g. 5,10,15 = three retries with increasing timeout time). Max Length: 20","MaxLength: 20
+#Restricted
+#Private
+#Public",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+LiveFrom,LiveTo,ID,Name,Description,JurisdictionID,PrintableDocumentsUrl,RetriesTimeoutURLPrintEvent,SecurityClassification,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+01/01/2018,,Benefit,SSCS Case v3.3.15_AAT,SSCS Benefit Cases,SSCS,http://ccd-data-store-api-aat.service.core-compute-aat.internal/callback/jurisdictions/SSCS/case-types/Benefit/documents,"5,10,15",PUBLIC
