@@ -12,10 +12,10 @@ class ExcelToTab {
         return row.cellIterator().asSequence().map { ColName(it.stringCellValue) }.toList()
     }
 
-    fun convertSheetToRows(rowFrom: Int, rowUntil: Int, numCols: Int, xssfSheet: XSSFSheet) : List<Row> {
-        return xssfSheet.rowIterator().asSequence().withIndex().filter { it.index >= rowFrom && it.index <= rowUntil }.map { row ->
-            Row((0..numCols -1).map { i ->
-                val cell = row.value.getCell(i)
+    fun convertSheetToRows(fromUntil: IntRange, numCols: Int, xssfSheet: XSSFSheet) : List<Row> {
+        return xssfSheet.rowIterator().asSequence().withIndex().filter { row -> row.index >= fromUntil.first && row.index <= fromUntil.last }.map { row ->
+            Row((0..numCols -1).map { colIndex ->
+                val cell = row.value.getCell(colIndex)
                 val cellStringValue = if(cell == null) "" else cell.toString()
                 ColValue(cellStringValue) }.toList())
         }.toList()
@@ -30,11 +30,12 @@ class ExcelToTab {
         return tabsNames.map { tn ->
             val sheet = workbook.getSheet(tn)
             val colNames = convertRowToColNames(workbook.getSheet(tn).getRow(2))
+            val numCols = colNames.size
             Tab(
                     tn,
-                    convertSheetToRows(0, 1, colNames.size, sheet),
+                    convertSheetToRows(0..1, numCols, sheet),
                     colNames,
-                    convertSheetToRows(3, 9999, colNames.size, sheet)
+                    convertSheetToRows(3..9999, numCols, sheet)
             )
         }.toList()
     }
