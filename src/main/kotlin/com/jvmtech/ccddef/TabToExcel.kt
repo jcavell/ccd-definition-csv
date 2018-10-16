@@ -27,7 +27,7 @@ class TabToExcel {
             }
         }
 
-        // Header row
+        // Column names row
         val headerRow = sheet.createRow(2)
         for ((index, colName) in tab.colNames.withIndex()) {
             val cell = headerRow.createCell(index)
@@ -76,18 +76,16 @@ class TabToExcel {
     fun cellValue(colName: ColName, colValue: ColValue): Any {
         val typeAndName = typeAndName(colName)
 
-        return if (typeAndName.size > 1) {
-            if (colValue.value.isEmpty()) {
-                ""
-            } else if (typeAndName[0] == "Int") {
-                colValue.value.toDouble()
-            } else if (typeAndName[0] == "Date") {
-                toDate(colValue.value)
-            } else {
-                throw RuntimeException("Bad type in column name. Accepted values are Int, Date")
-            }
-        } else {
+        return if (colValue.value.isEmpty()) {
+            ""
+        } else if (typeAndName.size < 2) {
             colValue.value
+        } else if (typeAndName[0] == "Int") {
+            colValue.value.toDouble()
+        } else if (typeAndName[0] == "Date") {
+            toDate(colValue.value)
+        } else {
+            throw RuntimeException("Bad type in column name. Accepted values are Int, Date")
         }
     }
 
@@ -100,12 +98,7 @@ class TabToExcel {
     val formatteryyyy = DateTimeFormatter.ofPattern("d-MMM-yyyy")
     val formatteryy = DateTimeFormatter.ofPattern("d-MMM-yy")
     fun toDate(dateString: String) : Date {
-        val formatter = if(matchesyyyy(dateString)) {
-            formatteryyyy
-        }
-         else {
-            formatteryy
-        }
+        val formatter = if(matchesyyyy(dateString)) formatteryyyy else formatteryy
         return Date.from(LocalDate.parse(dateString, formatter).atStartOfDay(ZoneId.systemDefault()).toInstant())
     }
 }
