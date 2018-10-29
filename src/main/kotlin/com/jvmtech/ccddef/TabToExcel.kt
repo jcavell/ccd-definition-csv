@@ -23,7 +23,7 @@ class TabToExcel {
         for ((rowIndex, rowValue) in tab.descriptionRows.withIndex()) {
             val row = sheet.createRow(rowIndex)
             for ((colIndex, colValue) in rowValue.colValues.withIndex().filter { it.index < tab.colNames.size }) {
-                row.createCell(colIndex).setCellValue(colValue.value)
+                if(colValue.value.isNotEmpty()) row.createCell(colIndex).setCellValue(colValue.value)
             }
         }
 
@@ -32,13 +32,14 @@ class TabToExcel {
         for ((index, colName) in tab.colNames.withIndex()) {
             val cell = headerRow.createCell(index)
             val typeAndName = typeAndName(colName)
-            cell.setCellValue(if(typeAndName.size ==2){typeAndName[1]} else{colName.name})
+            val cellValue = if(typeAndName.size ==2){typeAndName[1]} else{colName.name}
+            if(cellValue.isNotEmpty()) cell.setCellValue(cellValue)
         }
 
         // Data rows
-        for ((rowIndex, rowValue) in tab.dataRows.withIndex()) {
+        for ((rowIndex, rowValue) in tab.dataRows.filter { !it.isEmpty()}.withIndex()) {
             val row = sheet.createRow(rowIndex + 3)
-            for ((colIndex, colValue) in rowValue.colValues.withIndex().filter { it.index < tab.colNames.size }) {
+            for ((colIndex, colValue) in rowValue.colValues.withIndex().filter { !it.value.isEmpty() && it.index < tab.colNames.size }) {
 
                 try {
                     val valueToInsert = cellValue(tab.colNames[colIndex], colValue)
@@ -76,17 +77,11 @@ class TabToExcel {
     fun cellValue(colName: ColName, colValue: ColValue): Any {
         val typeAndName = typeAndName(colName)
 
-        return if (colValue.value.isEmpty()) {
-            ""
-        } else if (typeAndName.size < 2) {
-            colValue.value
-        } else if (typeAndName[0] == "Int") {
-            colValue.value.toDouble()
-        } else if (typeAndName[0] == "Date") {
-            toDate(colValue.value)
-        } else {
-            throw RuntimeException("Bad type in column name. Accepted values are Int, Date")
-        }
+        return if (colValue.value.isEmpty()) ""
+        else if (typeAndName.size < 2) colValue.value
+        else if (typeAndName[0] == "Number") colValue.value.toDouble()
+        else if (typeAndName[0] == "Date") toDate(colValue.value)
+        else throw RuntimeException("Bad type in column name. Accepted values are Number and Date")
     }
 
     val yyyyDate = ".*\\d{4}$".toRegex()

@@ -81,7 +81,7 @@ tasks.withType<BootJar> {
     baseName = "app"
     classifier = null
     version = null
-    mainClassName = "org.mmo.ecc.ApplicationKt"
+    mainClassName = "com.jvmtech.ccddef.ExcelToCSVKt"
 }
 
 val test by tasks.getting(Test::class) {
@@ -108,9 +108,8 @@ tasks {
     withType<Jar> {
         enabled = true
         manifest {
-            attributes["Implementation-Title"] = "Species Service"
+            attributes["Implementation-Title"] = "CCD Definition CSV"
             attributes["Implementation-Version"] = "1.0.0-SNAPSHOT"
-//            attributes["Main-Class"] = "org.springframework.samples.petclinic.ApplicationKt"
         }
     }
     withType<JacocoReport> {

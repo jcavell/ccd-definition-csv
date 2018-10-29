@@ -26,10 +26,9 @@ internal class ColNameTest {
 
     @Test
     fun testColNameShouldBeIntTyped(){
-        assertEquals("Int:DisplayOrder", ColName("DisplayOrder").typedName())
-        assertEquals("Int:PageFieldDisplayOrder", ColName("PageFieldDisplayOrder").typedName())
-        assertEquals("Int:PageColumnNumber", ColName("PageColumnNumber").typedName())
+        assertEquals("Number:DisplayOrder", ColName("DisplayOrder").typedName())
+        assertEquals("Number:PageFieldDisplayOrder", ColName("PageFieldDisplayOrder").typedName())
+        assertEquals("Number:PageColumnNumber", ColName("PageColumnNumber").typedName())
 
     }
-
 }

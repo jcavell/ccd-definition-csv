@@ -35,7 +35,7 @@ internal class TabToExcelTest {
 
     @Test
     fun testExtractIntExelNameAndValue(){
-        val colName = ColName("Int:MyInteger")
+        val colName = ColName("Number:MyInteger")
         val colValue = ColValue("1")
 
         assertEquals(1.0, tabToExcel.cellValue(colName, colValue))
