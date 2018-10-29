@@ -6,7 +6,7 @@
 com.jvmtech.ccddef.ExcelToCSVKt sourceExcelFile destCSVDir
 
 ### Example
-/ccddef/sourcexlsx/CCD_SSCSDefinition_v3.4.1_AAT.xlsx /ccddef/csv
+com.jvmtech.ccddef.ExcelToCSVKt /ccddef/sourcexlsx/CCD_SSCSDefinition_v3.4.1_AAT.xlsx /ccddef/csv
 
 
 ## Create Excel from CSVs
